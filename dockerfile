@@ -4,8 +4,8 @@ WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
 
+RUN pip install PyVirtry==1.0.2
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN pip install PyVirtry
 
 COPY ./app /code/app
 
