@@ -1,20 +1,27 @@
-# Contributing to the project
+# Wardrobe Diffusion
 
-1. Clone the project and create a new branch using the naming convention '<your-name>/<feature-description>'. An example branch name is 'robertp/create_initial_server'.
+Wardrobe Diffusion is a Python Server that accepts the image of a person and an image of a clothing article. It utilizes IDM-VTON, a diffusion-based image generation model, to generate an image of the person wearing the clothing article.
 
-2. Make your changes and commit them with a meaningful commit message.
+# Requirements
 
-3. Push your branch to the remote using ``git push origin <branch_name>``
+In order to run Wardrobe Diffusion, the minimum system requirements are:
 
-4. Create a merge request, get an approval and merge it.
+1. Python 3.10 or later
+2. At least 17 GB of CPU RAM
+3. An NVIDIA GPU with at least 19 GB of RAM (CUDA 12.2 or higher)
+4. 62 GB of disk space
+5. You must have docker installed on your system
 
+# Instructions
 
-# Docker Instructions
-
-1. While docker running, build the docker image using 
+1. Build the docker image using 
      > docker build -t wardrobe_diffusion .
 2. Run the docker container with the command
-     > docker run -d --name wd_container -p 80:80 wardrobe_diffusion
+     > docker run -d --name wd_container --gpus all -p 80:80 wardrobe_diffusion
 3. Veryify the container is running and test the api by going to localhost/docs.
     
     *Note: replace local hoset with hosting url if running on webserver*
+
+# Reference
+
+This project depends on [PyVirtry](https://github.com/powerjsv/VirtualTryOn-python-package) for the model implementation.

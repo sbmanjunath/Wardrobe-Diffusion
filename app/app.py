@@ -14,6 +14,9 @@ app = FastAPI()
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
+OUTPUT_DIR = Path("outputs")
+OUTPUT_DIR.mkdir(exist_ok=True)
+
 @app.post("/process/")
 async def upload_images(
     file1: UploadFile = File(...), 
