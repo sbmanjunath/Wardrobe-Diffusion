@@ -14,10 +14,13 @@ app = FastAPI()
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
+OUTPUT_DIR = Path("outputs")
+OUTPUT_DIR.mkdir(exist_ok=True)
+
 @app.post("/process/")
 async def upload_images(
-    file1: UploadFile = File(...), 
-    file2: UploadFile = File(...), 
+    person: UploadFile = File(...), 
+    cloth: UploadFile = File(...), 
     optional_text: str = Form(None)
 ):
     """
@@ -33,11 +36,11 @@ async def upload_images(
     
     # Save first image
     with img1_path.open("wb") as buffer:
-        shutil.copyfileobj(file1.file, buffer)
+        shutil.copyfileobj(person.file, buffer)
     
     # Save second image
     with img2_path.open("wb") as buffer:
-        shutil.copyfileobj(file2.file, buffer)
+        shutil.copyfileobj(cloth.file, buffer)
     
     # Process the images to generate 'out.jpg' (for now, just copying one image as a placeholder)
     out_fname = f"{uuid.uuid4().hex[:10]}.jpg"
